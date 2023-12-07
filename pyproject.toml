@@ -1,0 +1,36 @@
+[tool.poetry]
+name = "robot33"
+version = "0.1.0"
+description = ""
+license = "GPL-3.0-or-later"
+authors = ["axiangcoding <axiangcoding@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.104.1"
+loguru = "^0.7.2"
+uvicorn = {extras = ["standard"], version = "^0.24.0.post1"}
+pydantic-settings = "^2.1.0"
+pydantic = "^2.5.2"
+langchain = "^0.0.346"
+toml = "^0.10.2"
+python-multipart = "^0.0.6"
+python-jose = {extras = ["cryptography"], version = "^3.3.0"}
+passlib = {extras = ["bcrypt"], version = "^1.7.4"}
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.3"
+black = "^23.11.0"
+flake8 = "^6.1.0"
+httpx = "^0.25.1"
+pytest-cov = "^4.1.0"
+pytest-html = "^4.1.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 160
