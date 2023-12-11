@@ -1,8 +1,8 @@
 from fastapi import APIRouter
+from pydantic import BaseModel
 
 from robot33 import config
 from robot33.internal.schema.response import CommonResult
-from pydantic import BaseModel
 
 router = APIRouter(tags=["application"], prefix="/application")
 

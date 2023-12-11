@@ -1,8 +1,9 @@
 from functools import lru_cache
 from os import path
-from typing import Any, Tuple, Dict
-from loguru import logger
+from typing import Any, Tuple, Dict, Optional
+
 import toml
+from loguru import logger
 from pydantic.fields import FieldInfo
 from pydantic_settings import BaseSettings, PydanticBaseSettingsSource, SettingsConfigDict
 
@@ -13,8 +14,14 @@ class App(BaseSettings):
     description: str = ""
 
 
+class LLMConfig(BaseSettings):
+    baidu_ernie: Optional[dict[str, Any]] = None
+    openai_gpt: Optional[dict[str, Any]] = None
+
+
 class Settings(BaseSettings):
     app: App = App()
+    llm_config: LLMConfig = LLMConfig()
 
     model_config = SettingsConfigDict(env_nested_delimiter="__")
 
@@ -30,20 +37,27 @@ class Settings(BaseSettings):
         return (
             init_settings,
             env_settings,
-            TomlConfigSettingsSource(settings_cls),
+            TomlConfigSettingsSource(settings_cls, config_file_path="./local.app.toml"),
+            TomlConfigSettingsSource(settings_cls, config_file_path=None),
             dotenv_settings,
             file_secret_settings,
         )
 
 
 class TomlConfigSettingsSource(PydanticBaseSettingsSource):
+    config_file_path: Optional[str] = "./app.toml"
+
+    def __init__(self, settings_cls: type[BaseSettings], config_file_path: Optional[str]):
+        super().__init__(settings_cls)
+        if config_file_path is not None:
+            self.config_file_path = config_file_path
+
     def get_field_value(self, field: FieldInfo, field_name: str) -> Tuple[Any, str, bool]:
-        file_path = "./app.toml"
-        if not path.exists(file_path):
-            logger.info(f"Config file {file_path} not found")
+        if not path.exists(self.config_file_path):
+            logger.info(f"Config file {self.config_file_path} not found")
             return None, field_name, False
 
-        file_content_toml = toml.load(f="./app.toml")
+        file_content_toml = toml.load(f=self.config_file_path)
         field_value = file_content_toml.get(field_name)
         return field_value, field_name, False
 
