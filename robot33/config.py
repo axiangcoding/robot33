@@ -19,9 +19,14 @@ class LLMConfig(BaseSettings):
     openai_gpt: Optional[dict[str, Any]] = None
 
 
+class Security(BaseSettings):
+    token: str = "default_token"
+
+
 class Settings(BaseSettings):
     app: App = App()
     llm_config: LLMConfig = LLMConfig()
+    security: Security
 
     model_config = SettingsConfigDict(env_nested_delimiter="__")
 

@@ -6,10 +6,13 @@ description = """
 This is the API for the Robot33 project.
 """
 
-[llm_config]
 [llm_config.baidu_ernie]
 qianfan_ak = "your ak"
 qianfan_sk = "your sk"
 
 [llm_config.openai_gpt]
 openai_api_key = "api key"
+
+
+[security]
+token = "default_token"
