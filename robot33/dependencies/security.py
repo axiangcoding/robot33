@@ -1,3 +1,4 @@
+import secrets
 from typing import Optional
 
 from fastapi import HTTPException
@@ -11,7 +12,7 @@ from robot33 import config
 class VerifyTokenHeader(APIKeyHeader):
     async def __call__(self, request: Request) -> Optional[str]:
         api_key = await super().__call__(request)
-        if api_key == config.get_settings().security.token:
+        if secrets.compare_digest(api_key, config.get_settings().security.token):
             return None
         else:
             raise HTTPException(status_code=HTTP_403_FORBIDDEN, detail="Authenticated Failed")
