@@ -16,3 +16,7 @@ openai_api_key = "api key"
 
 [security]
 token = "default_token"
+
+[db]
+mongodb_url = "mongodb://localhost:27017"
+mongodb_database = "robot33"

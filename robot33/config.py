@@ -23,10 +23,16 @@ class Security(BaseSettings):
     token: str = "default_token"
 
 
+class Database(BaseSettings):
+    mongodb_url: str = "mongodb://localhost:27017"
+    mongodb_database: str = "robot33"
+
+
 class Settings(BaseSettings):
     app: App = App()
     llm_config: LLMConfig = LLMConfig()
     security: Security
+    db: Database
 
     model_config = SettingsConfigDict(env_nested_delimiter="__")
 
