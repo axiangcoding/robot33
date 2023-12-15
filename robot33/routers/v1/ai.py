@@ -1,6 +1,6 @@
 from typing import Optional
 
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 from langchain.callbacks import get_openai_callback
 from langchain_core.messages import FunctionMessage, AIMessage, SystemMessage, HumanMessage
 from langchain_core.messages.base import BaseMessage
@@ -10,8 +10,10 @@ from robot33.internal.schema.common import LLMProviderType
 from robot33.internal.schema.response import CommonResult
 from robot33.internal.service import ai
 from loguru import logger
+from robot33.dependencies.security import verify_token
 
-router = APIRouter(tags=["ai"], prefix="/ai")
+
+router = APIRouter(tags=["ai"], prefix="/ai", dependencies=[Depends(verify_token)])
 
 
 class ChatMessage(BaseModel):
