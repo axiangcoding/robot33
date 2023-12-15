@@ -16,4 +16,5 @@ app.add_exception_handler(Exception, error_handler.global_exception_handler)
 
 app.add_event_handler("startup", events.startup_event)
 
+app.include_router(routers.router_root)
 app.include_router(routers.router_v1)

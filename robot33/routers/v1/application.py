@@ -20,14 +20,3 @@ async def get_info() -> CommonResult[InfoOut]:
     :return: 应用的信息
     """
     return CommonResult[InfoOut].success(InfoOut(version=config.get_settings().app.version))
-
-
-@router.get("/health", summary="获取应用的健康状态")
-async def get_health() -> CommonResult:
-    """获取应用的健康状态
-
-    获取应用的健康状态，如果返回的状态码为200，则表示应用正常运行
-
-    :return:
-    """
-    return CommonResult.success({"status": "ok"})

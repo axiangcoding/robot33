@@ -1,12 +1,17 @@
-from tests.test_main import client
+import pytest
+
+from tests.test_main import async_client
+
+default_headers = {"X-Robot33-Token": "default_token"}
 
 
-def test_llm_chat():
-    with client:
-        response = client.post(
+@pytest.mark.asyncio
+async def test_llm_chat_fake():
+    async with async_client as ac:
+        response = await ac.post(
             "/v1/ai/llm/chat",
             json={
-                "llm_provider": "baidu_ernie",
+                "llm_provider": "fake",
                 "messages": [
                     {
                         "role": "user",
@@ -14,9 +19,10 @@ def test_llm_chat():
                     }
                 ],
             },
+            headers=default_headers,
         )
         assert response.status_code == 200
-
-        assert response.json()["code"] == 0
-        assert response.json()["message"] == "success"
-        assert "result" in response.json()["data"]
+        resp_json = response.json()
+        assert resp_json["code"] == 0
+        assert resp_json["message"] == "success"
+        assert resp_json["data"]["result"] == "i am fake response"

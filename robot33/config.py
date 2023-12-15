@@ -17,6 +17,7 @@ class App(BaseSettings):
 class LLMConfig(BaseSettings):
     baidu_ernie: Optional[dict[str, Any]] = None
     openai_gpt: Optional[dict[str, Any]] = None
+    fake: Optional[dict[str, Any]] = None
 
 
 class Security(BaseSettings):

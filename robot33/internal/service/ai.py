@@ -1,5 +1,7 @@
 from typing import Optional
 
+from langchain_community.chat_models import FakeListChatModel
+
 from robot33 import config
 from robot33.internal.schema.common import LLMProviderType
 from langchain.llms import QianfanLLMEndpoint, OpenAI
@@ -23,7 +25,6 @@ def get_llm_client(provider: LLMProviderType, model: Optional[str] = None, strea
             model=model,
             streaming=streaming,
         )
-        return llm
     elif provider == LLMProviderType.OPENAI_GPT:
         if model is None:
             model = "gpt-3.5-turbo"
@@ -32,6 +33,8 @@ def get_llm_client(provider: LLMProviderType, model: Optional[str] = None, strea
             model=model,
             streaming=streaming,
         )
-        return llm
+    elif provider == LLMProviderType.FAKE:
+        llm = FakeListChatModel(**config.get_settings().llm_config.fake)
     else:
         raise NotImplementedError("暂不支持该LLM服务提供商")
+    return llm
