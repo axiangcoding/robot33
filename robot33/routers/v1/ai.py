@@ -35,7 +35,7 @@ class LLMChatOut(BaseModel):
 
 
 @router.post("/llm/chat", summary="和大语言模型聊天")
-async def llm_chat(body: LLMChatIn) -> CommonResult[LLMChatOut]:
+def llm_chat(body: LLMChatIn) -> CommonResult[LLMChatOut]:
     """和大语言模型聊天
 
     :param body:
@@ -45,7 +45,7 @@ async def llm_chat(body: LLMChatIn) -> CommonResult[LLMChatOut]:
 
     msgs = convert_to_langchain_messages(body.messages)
     with get_openai_callback() as cb:
-        resp = await llm.apredict_messages(messages=msgs)
+        resp = llm.predict_messages(messages=msgs)
     logger.debug("callback is {}", cb)
     return CommonResult.success(LLMChatOut(result=resp.content))
 

@@ -4,7 +4,6 @@ from fastapi.testclient import TestClient
 default_headers = {"X-Robot33-Token": "default_token"}
 
 
-@pytest.mark.asyncio
 def test_llm_chat_fake(test_client: TestClient):
     response = test_client.post(
         "/v1/ai/llm/chat",
@@ -26,7 +25,7 @@ def test_llm_chat_fake(test_client: TestClient):
     assert resp_json["data"]["result"] == "i am fake response"
 
 
-@pytest.mark.asyncio
+@pytest.mark.skip("需要配置百度API的key")
 def test_llm_chat_baidu_ernie(test_client: TestClient):
     response = test_client.post(
         "/v1/ai/llm/chat",
