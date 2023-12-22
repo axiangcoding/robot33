@@ -1,5 +1,3 @@
-from typing import Any
-
 import pytest
 
 from robot33.internal.schema.errors import CommonError
