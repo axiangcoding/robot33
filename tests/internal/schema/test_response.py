@@ -12,10 +12,13 @@ def test_common_result_success(data: object):
     assert cr.data == data
 
 
-@pytest.mark.parametrize("ce,message", [
-    (CommonError.ERROR, None),
-    (CommonError.ERROR, "custom error"),
-])
+@pytest.mark.parametrize(
+    "ce,message",
+    [
+        (CommonError.ERROR, None),
+        (CommonError.ERROR, "custom error"),
+    ],
+)
 def test_common_result_error(ce: CommonError, message: str):
     cr = CommonResult.error(ce, message)
     assert cr.code == ce.code

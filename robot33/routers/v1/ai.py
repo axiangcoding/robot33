@@ -17,8 +17,7 @@ router = APIRouter(tags=["ai"], prefix="/ai", dependencies=[Depends(verify_token
 
 class ChatMessage(BaseModel):
     role: str = Field(
-        description="消息角色，可以是assistant或者user，部分模型支持system和function",
-        pattern="^(assistant|user|system|function)$"
+        description="消息角色，可以是assistant或者user，部分模型支持system和function", pattern="^(assistant|user|system|function)$"
     )
     content: str = Field(description="消息内容")
     name: Optional[str] = Field(description="如果是function的消息，则需要指定function的名称", default=None)
@@ -28,8 +27,7 @@ class LLMChatIn(BaseModel):
     llm_provider: LLMProviderType = Field(description="LLM服务提供商")
     llm_model: Optional[str] = Field(description="LLM模型名称，如果不指定则随机选择", default=None)
     messages: list[ChatMessage]
-    functions: list[dict] = Field(description="函数定义列表。如果模型支持function calling，则可以指定来使用，否则无效。",
-                                    default=None)
+    functions: list[dict] = Field(description="函数定义列表。如果模型支持function calling，则可以指定来使用，否则无效。", default=None)
 
 
 class LLMChatOut(BaseModel):
@@ -50,8 +48,7 @@ def llm_chat(body: LLMChatIn) -> CommonResult[LLMChatOut]:
     with get_openai_callback() as cb:
         resp = llm.predict_messages(messages=msgs, functions=body.functions)
     logger.debug("callback is {}", cb)
-    return CommonResult.success(LLMChatOut(result=resp.content,
-                                           additional_info=resp.additional_kwargs))
+    return CommonResult.success(LLMChatOut(result=resp.content, additional_info=resp.additional_kwargs))
 
 
 def convert_to_langchain_messages(messages: list[ChatMessage]) -> list[BaseMessage]:
