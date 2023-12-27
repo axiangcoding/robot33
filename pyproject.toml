@@ -8,7 +8,7 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
-fastapi = "^0.106.0"
+fastapi = "^0.108.0"
 loguru = "^0.7.2"
 uvicorn = "^0.25.0"
 langchain = "^0.0.352"
@@ -25,7 +25,7 @@ pymongo = "^4.6.1"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.4.3"
-black = "^23.12.0"
+black = "^23.12.1"
 flake8 = "^6.1.0"
 httpx = "^0.25.1"
 pytest-cov = "^4.1.0"
