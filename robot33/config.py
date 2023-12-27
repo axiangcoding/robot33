@@ -1,8 +1,9 @@
 from functools import lru_cache
 from os import path
+import tomllib
 from typing import Any, Tuple, Dict, Optional
 
-import toml
+
 from loguru import logger
 from pydantic.fields import FieldInfo
 from pydantic_settings import BaseSettings, PydanticBaseSettingsSource, SettingsConfigDict
@@ -65,11 +66,11 @@ class TomlConfigSettingsSource(PydanticBaseSettingsSource):
             self.config_file_path = config_file_path
 
     def get_field_value(self, field: FieldInfo, field_name: str) -> Tuple[Any, str, bool]:
-        if not path.exists(self.config_file_path):
-            logger.info(f"Config file {self.config_file_path} not found")
+        file_content_toml = __get_dict_from_toml_file__(self.config_file_path)
+        if not file_content_toml:
+            logger.debug("Not found config filed {} in config file {}", field_name, self.config_file_path)
             return None, field_name, False
-
-        file_content_toml = toml.load(f=self.config_file_path)
+        logger.debug("Found config filed {} in config file {}", field_name, self.config_file_path)
         field_value = file_content_toml.get(field_name)
         return field_value, field_name, False
 
@@ -86,6 +87,17 @@ class TomlConfigSettingsSource(PydanticBaseSettingsSource):
                 d[field_key] = field_value
 
         return d
+
+
+@lru_cache
+def __get_dict_from_toml_file__(file_path: str) -> dict:
+    if not path.exists(file_path):
+        logger.debug("toml file {} not exist", file_path)
+        return {}
+    with open(file_path, "rb") as f:
+        file_content_toml = tomllib.load(f)
+    logger.debug("toml file {} exist", file_path)
+    return file_content_toml
 
 
 @lru_cache
