@@ -46,8 +46,8 @@ def llm_chat(body: LLMChatIn) -> CommonResult[LLMChatOut]:
 
     msgs = convert_to_langchain_messages(body.messages)
     with get_openai_callback() as cb:
-        resp = llm.predict_messages(messages=msgs, functions=body.functions)
-    logger.debug("callback is {}", cb)
+        resp = llm.predict_messages(msgs, functions=body.functions)
+    logger.debug("token usage callback is {}", cb)
     return CommonResult.success(LLMChatOut(result=resp.content, additional_info=resp.additional_kwargs))
 
 

@@ -4,7 +4,7 @@ from langchain_community.chat_models import FakeListChatModel
 
 from robot33 import config
 from robot33.internal.schema.common import LLMProviderType
-from langchain.llms import QianfanLLMEndpoint, OpenAI
+from langchain.chat_models import QianfanChatEndpoint, ChatOpenAI
 from langchain.llms.base import LLM
 
 
@@ -20,7 +20,7 @@ def get_llm_client(provider: LLMProviderType, model: Optional[str] = None, strea
     if provider == LLMProviderType.BAIDU_ERNIE:
         if model is None:
             model = "ERNIE-Bot-turbo"
-        llm = QianfanLLMEndpoint(
+        llm = QianfanChatEndpoint(
             **config.get_settings().llm_config.baidu_ernie,
             model=model,
             streaming=streaming,
@@ -28,7 +28,7 @@ def get_llm_client(provider: LLMProviderType, model: Optional[str] = None, strea
     elif provider == LLMProviderType.OPENAI_GPT:
         if model is None:
             model = "gpt-3.5-turbo"
-        llm = OpenAI(
+        llm = ChatOpenAI(
             **config.get_settings().llm_config.openai_gpt,
             model=model,
             streaming=streaming,
