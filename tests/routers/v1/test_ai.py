@@ -6,6 +6,7 @@ from robot33 import config
 __default_headers__ = {"X-Robot33-Token": "default_token"}
 __chat_path__ = "/v1/ai/chat"
 
+
 def test_llm_chat_fake(test_client: TestClient):
     response = test_client.post(
         __chat_path__,

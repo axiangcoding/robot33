@@ -1,4 +1,5 @@
 [app]
+debug = false
 name = "Robot33 API"
 version = "development"
 description = """

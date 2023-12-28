@@ -10,6 +10,7 @@ app = FastAPI(
     title=settings.app.name,
     version=settings.app.version,
     description=settings.app.description,
+    debug=settings.app.debug,
 )
 
 app.add_exception_handler(Exception, error_handler.global_exception_handler)
