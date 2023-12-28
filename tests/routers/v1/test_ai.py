@@ -3,11 +3,11 @@ from fastapi.testclient import TestClient
 
 from robot33 import config
 
-__default_headers__ = {"X-Robot33-Token": "default_token"}
+
 __chat_path__ = "/v1/ai/chat"
 
 
-def test_llm_chat_fake(test_client: TestClient):
+def test_llm_chat_fake(test_client: TestClient, test_token_header: dict[str, str]):
     response = test_client.post(
         __chat_path__,
         json={
@@ -19,7 +19,7 @@ def test_llm_chat_fake(test_client: TestClient):
                 }
             ],
         },
-        headers=__default_headers__,
+        headers=test_token_header,
     )
     assert response.status_code == 200
     resp_json = response.json()
@@ -29,7 +29,7 @@ def test_llm_chat_fake(test_client: TestClient):
 
 
 @pytest.mark.skipif(config.get_settings().llm_config.baidu_ernie is None, reason="需要配置百度文心一言的key和secret")
-def test_llm_chat_baidu_ernie(test_client: TestClient):
+def test_llm_chat_baidu_ernie(test_client: TestClient, test_token_header: dict[str, str]):
     response = test_client.post(
         __chat_path__,
         json={
@@ -41,7 +41,7 @@ def test_llm_chat_baidu_ernie(test_client: TestClient):
                 }
             ],
         },
-        headers=__default_headers__,
+        headers=test_token_header,
     )
     assert response.status_code == 200
     resp_json = response.json()
@@ -51,7 +51,7 @@ def test_llm_chat_baidu_ernie(test_client: TestClient):
 
 
 @pytest.mark.skipif(config.get_settings().llm_config.openai_gpt is None, reason="需要配置Openai的key")
-def test_llm_chat_openai_gpt(test_client: TestClient):
+def test_llm_chat_openai_gpt(test_client: TestClient, test_token_header: dict[str, str]):
     response = test_client.post(
         __chat_path__,
         json={
@@ -63,7 +63,7 @@ def test_llm_chat_openai_gpt(test_client: TestClient):
                 }
             ],
         },
-        headers=__default_headers__,
+        headers=test_token_header,
     )
     assert response.status_code == 200
     resp_json = response.json()
@@ -73,7 +73,7 @@ def test_llm_chat_openai_gpt(test_client: TestClient):
 
 
 @pytest.mark.skipif(config.get_settings().llm_config.baidu_ernie is None, reason="需要配置百度文心一言的key和secret")
-def test_llm_chat_baidu_ernie_function_call(test_client: TestClient):
+def test_llm_chat_baidu_ernie_function_call(test_client: TestClient, test_token_header: dict[str, str]):
     response = test_client.post(
         __chat_path__,
         json={
@@ -102,7 +102,7 @@ def test_llm_chat_baidu_ernie_function_call(test_client: TestClient):
                 },
             ],
         },
-        headers=__default_headers__,
+        headers=test_token_header,
     )
     assert response.status_code == 200
     resp_json = response.json()
@@ -115,7 +115,7 @@ def test_llm_chat_baidu_ernie_function_call(test_client: TestClient):
 
 
 @pytest.mark.skipif(config.get_settings().llm_config.openai_gpt is None, reason="需要配置Openai的key")
-def test_llm_chat_openai_gpt_function_call(test_client: TestClient):
+def test_llm_chat_openai_gpt_function_call(test_client: TestClient, test_token_header: dict[str, str]):
     response = test_client.post(
         __chat_path__,
         json={
@@ -144,7 +144,7 @@ def test_llm_chat_openai_gpt_function_call(test_client: TestClient):
                 },
             ],
         },
-        headers=__default_headers__,
+        headers=test_token_header,
     )
     assert response.status_code == 200
     resp_json = response.json()
