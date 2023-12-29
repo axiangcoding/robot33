@@ -1,12 +1,11 @@
 from datetime import datetime
 import hashlib
-from bson import ObjectId
 from fastapi import APIRouter, Depends, Query
 from robot33.dependencies.security import verify_token
 from robot33.internal.model.document import DocumentInDb
 from robot33.internal.schema.response import CommonResult
 from pydantic import BaseModel, Field
-from robot33.internal.db import database, document_dao
+from robot33.internal.db import document_dao
 
 router = APIRouter(tags=["documents"], prefix="/documents", dependencies=[Depends(verify_token)])
 
