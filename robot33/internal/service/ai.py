@@ -38,5 +38,5 @@ def get_chat_model_client(
     elif provider == LLMProviderType.FAKE:
         llm = FakeListChatModel(**config.get_settings().llm_config.fake)
     else:
-        raise NotImplementedError("暂不支持该LLM服务提供商")
+        raise NotImplementedError("this provider is not implemented")
     return llm

@@ -1,4 +1,4 @@
-.PHONY: setup dev check_style format lint build_image test test_with_ci clean help
+.PHONY: setup dev check_style format lint build_image test test_with_ci start_depend_service clean help
 
 setup:
 	poetry check
@@ -18,13 +18,16 @@ lint:
 	poetry run flake8 ./robot33 ./tests
 
 build_image:
-	docker build -t robot33 .
+	docker build -t robot33 . --name robot33
 
 test:
 	poetry run pytest --html=report/report.html --cov=./robot33 ./tests/ --cov-report=html --cov-report=term
 
 test_with_ci:
 	poetry run pytest --cov=./robot33 ./tests/ --cov-report=xml
+
+start_depend_service:
+	cd depends && docker compose up -d
 
 clean:
 	rm ./logs ./report ./htmlcov
@@ -37,5 +40,7 @@ help:
 	@echo "lint: lint code"
 	@echo "build_image: build docker image"
 	@echo "test: run test"
+	@echo "test_with_ci: run test with ci"
+	@echo "start_depend_service: start depend service"
 	@echo "clean: clean logs, report and htmlcov"
 	
