@@ -30,7 +30,7 @@ jobs:
           poetry install
       - name: Prepare test app.toml file
         run: |
-          cp example.app.toml app.toml
+          cp ci/ci.app.toml app.toml
       - name: Test with pytest
         run: |
           make test

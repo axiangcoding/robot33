@@ -1,0 +1,19 @@
+[app]
+debug = true
+name = "Robot33 API"
+version = "development"
+description = """
+## Description
+This is the API for the Robot33 project.
+"""
+
+[llm_config.fake]
+sleep = 1
+responses = ["i am fake response"]
+
+[security]
+token = "default_token"
+
+[db]
+mongodb_url = "mongodb://localhost:27017"
+mongodb_database = "robot33"
