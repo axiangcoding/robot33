@@ -1,6 +1,8 @@
 .PHONY: setup dev check_style format lint build_image test test_with_ci clean help
 
 setup:
+	poetry check
+	poetry check --lock
 	poetry install
 
 dev:

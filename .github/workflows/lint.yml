@@ -21,7 +21,7 @@ jobs:
       - name: Check poetry file and lock file
         run: |
           poetry check
-          poetry lock --check
+          poetry check --lock
       - name: Install dependencies
         run: |
           poetry install
