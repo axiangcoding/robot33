@@ -1,4 +1,4 @@
-.PHONY: setup dev check_style format lint build_image test clean help
+.PHONY: setup dev check_style format lint build_image test test_with_ci clean help
 
 setup:
 	poetry install
@@ -20,6 +20,9 @@ build_image:
 
 test:
 	poetry run pytest --html=report/report.html --cov=./robot33 ./tests/ --cov-report=html --cov-report=term
+
+test_with_ci:
+	poetry run pytest --cov=./robot33 ./tests/ --cov-report=xml
 
 clean:
 	rm ./logs ./report ./htmlcov
