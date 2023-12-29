@@ -1,4 +1,4 @@
-.PHONY: setup dev check_style format lint build_image test test_with_ci start_depend_service clean help
+.PHONY: setup dev check_style format lint build_image test test_with_ci start_depend stop_depend clean help
 
 setup:
 	poetry check
@@ -9,7 +9,7 @@ dev:
 	poetry run uvicorn robot33.main:app	--reload --port=8888
 
 check_style:
-	poetry run black ./robot33 ./tests --check
+	poetry run black ./robot33 ./tests --check 
 
 format:
 	poetry run black ./robot33 ./tests
@@ -26,8 +26,11 @@ test:
 test_with_ci:
 	poetry run pytest --cov=./robot33 ./tests/ --cov-report=xml
 
-start_depend_service:
-	cd depends && docker compose up -d
+start_depend:
+	cd depends && docker compose up -d --remove-orphans
+
+stop_depend:
+	cd depends && docker compose stop
 
 clean:
 	rm ./logs ./report ./htmlcov
