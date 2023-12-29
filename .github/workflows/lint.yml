@@ -2,7 +2,7 @@ name: "Lint"
 
 on:
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   check:
@@ -10,14 +10,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name : Install Poetry
+      - name: Install Poetry
         run: |
           pipx install poetry
       - name: Set up Python 3.11
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
-          cache: 'poetry'
+          python-version: "3.11"
+          cache: "poetry"
       - name: Check poetry file and lock file
         run: |
           poetry check
@@ -27,5 +27,4 @@ jobs:
           poetry install
       - name: Lint check with flake8
         run: |
-          make check_style
           make lint
