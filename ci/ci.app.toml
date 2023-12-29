@@ -1,5 +1,5 @@
 [app]
-debug = false
+debug = true
 name = "Robot33 API"
 version = "development"
 description = """
@@ -7,13 +7,9 @@ description = """
 This is the API for the Robot33 project.
 """
 
-[llm_config.baidu_ernie]
-qianfan_ak = "your ak"
-qianfan_sk = "your sk"
-
-[llm_config.openai_gpt]
-openai_api_key = "api key"
-
+[llm_config.fake]
+sleep = 1
+responses = ["i am fake response"]
 
 [security]
 token = "default_token"

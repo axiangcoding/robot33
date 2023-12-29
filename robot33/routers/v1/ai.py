@@ -35,18 +35,18 @@ class LLMChatOut(BaseModel):
     additional_info: Optional[dict] = Field(description="额外的信息", default=None)
 
 
-@router.post("/llm/chat", summary="和大语言模型聊天")
+@router.post("/chat", summary="和大语言模型聊天")
 def llm_chat(body: LLMChatIn) -> CommonResult[LLMChatOut]:
     """和大语言模型聊天
 
     :param body:
     :return:
     """
-    llm = ai.get_llm_client(body.llm_provider, body.llm_model)
+    chat_model = ai.get_chat_model_client(body.llm_provider, body.llm_model)
 
     msgs = convert_to_langchain_messages(body.messages)
     with get_openai_callback() as cb:
-        resp = llm.predict_messages(msgs, functions=body.functions)
+        resp = chat_model.predict_messages(msgs, functions=body.functions)
     logger.debug("token usage callback is {}", cb)
     return CommonResult.success(LLMChatOut(result=resp.content, additional_info=resp.additional_kwargs))
 

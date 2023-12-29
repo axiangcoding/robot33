@@ -13,6 +13,7 @@ class App(BaseSettings):
     name: str = "Robot33 API"
     version: str = "development"
     description: str = ""
+    debug: bool = False
 
 
 class LLMConfig(BaseSettings):
@@ -68,9 +69,9 @@ class TomlConfigSettingsSource(PydanticBaseSettingsSource):
     def get_field_value(self, field: FieldInfo, field_name: str) -> Tuple[Any, str, bool]:
         file_content_toml = __get_dict_from_toml_file__(self.config_file_path)
         if not file_content_toml:
-            logger.debug("Not found config filed {} in config file {}", field_name, self.config_file_path)
+            logger.debug("Not found config field {} in config file {}", field_name, self.config_file_path)
             return None, field_name, False
-        logger.debug("Found config filed {} in config file {}", field_name, self.config_file_path)
+        logger.debug("Found config field {} in config file {}", field_name, self.config_file_path)
         field_value = file_content_toml.get(field_name)
         return field_value, field_name, False
 

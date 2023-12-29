@@ -1,14 +1,14 @@
 from fastapi import APIRouter
-from robot33.internal.db import db
+from robot33.internal.db import database
 from robot33.internal.schema.response import CommonResult
 
-router = APIRouter(tags=["user"], prefix="/user")
+router = APIRouter(tags=["users"], prefix="/users")
 
 
 @router.get("/me", summary="获取当前用户的信息")
 async def get_me() -> CommonResult:
     users = []
-    async for user in db.user_collection.find():
+    async for user in database.user_collection.find():
         users.append(user)
     """获取当前用户的信息
 
