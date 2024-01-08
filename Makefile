@@ -1,5 +1,7 @@
 .PHONY: setup dev check_style format lint build_image test test_with_ci start_depend stop_depend clean help
 
+.DEFAULT_GOAL := help
+
 setup:
 	poetry check
 	poetry check --lock
@@ -44,6 +46,7 @@ help:
 	@echo "build_image: build docker image"
 	@echo "test: run test"
 	@echo "test_with_ci: run test with ci"
-	@echo "start_depend_service: start depend service"
+	@echo "start_depend: start depend service"
+	@echo "stop_depend: stop depend service"
 	@echo "clean: clean logs, report and htmlcov"
 	
