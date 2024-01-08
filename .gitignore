@@ -6,5 +6,6 @@ report
 .pytest_cache
 
 .coverage
+volumes/
 
 local.app.toml

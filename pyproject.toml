@@ -11,7 +11,7 @@ python = "^3.11"
 fastapi = "^0.108.0"
 loguru = "^0.7.2"
 uvicorn = "^0.25.0"
-langchain = "^0.0.354"
+langchain = "^0.1.0"
 python-multipart = "^0.0.6"
 python-jose = {extras = ["cryptography"], version = "^3.3.0"}
 passlib = {extras = ["bcrypt"], version = "^1.7.4"}
@@ -29,6 +29,12 @@ flake8 = "^7.0.0"
 httpx = "^0.26.0"
 pytest-cov = "^4.1.0"
 pytest-html = "^4.1.1"
+
+
+[[tool.poetry.source]]
+name = "mirrors"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple/"
+priority = "supplemental"
 
 [build-system]
 requires = ["poetry-core"]
