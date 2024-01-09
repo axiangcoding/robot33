@@ -1,5 +1,6 @@
 from datetime import datetime, timezone
 from bson import ObjectId
+from pydantic import BaseModel, Field
 from robot33.internal.model.document import DocumentInDb
 from robot33.internal.db.database import DBDAO, document_collection
 from pymongo.collection import Collection
@@ -7,6 +8,10 @@ from pymongo.collection import Collection
 
 class DocumentDAO(DBDAO):
     __col__: Collection = document_collection
+
+    def __init__(self, collection: Collection = None):
+        if collection is not None:
+            self.__col__ = collection
 
     def insert_one(self, data: DocumentInDb) -> str:
         item = self.__col__.insert_one(data.model_dump())

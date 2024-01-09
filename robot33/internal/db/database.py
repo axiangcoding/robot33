@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from pymongo import MongoClient
-
+from pymongo.collection import Collection
 from robot33 import config
 from robot33.internal.model.document import DOCUMENT_COLLECTION_NAME
 
@@ -11,7 +11,7 @@ database = client.get_database(config.get_settings().db.mongodb_database)
 document_collection = database.get_collection(DOCUMENT_COLLECTION_NAME)
 
 
-class DBDAO(ABC, BaseModel):
+class DBDAO(ABC):
     @abstractmethod
     def insert_one(self, data: BaseModel) -> str:
         pass

@@ -6,8 +6,8 @@ from robot33 import config
 from robot33.internal.schema.common import LLMProviderType
 
 from langchain_core.language_models.chat_models import BaseChatModel
-from langchain_community.chat_models import QianfanChatEndpoint
-from langchain_openai import ChatOpenAI
+from langchain_community.chat_models import QianfanChatEndpoint, ChatOpenAI
+
 
 def get_chat_model_client(
     provider: LLMProviderType, model: Optional[str] = None, streaming: Optional[bool] = False
