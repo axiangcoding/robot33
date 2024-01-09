@@ -4,9 +4,10 @@ from langchain_community.chat_models import FakeListChatModel
 
 from robot33 import config
 from robot33.internal.schema.common import LLMProviderType
-from langchain.chat_models import QianfanChatEndpoint, ChatOpenAI
-from langchain_core.language_models.chat_models import BaseChatModel
 
+from langchain_core.language_models.chat_models import BaseChatModel
+from langchain_community.chat_models import QianfanChatEndpoint
+from langchain_openai import ChatOpenAI
 
 def get_chat_model_client(
     provider: LLMProviderType, model: Optional[str] = None, streaming: Optional[bool] = False
