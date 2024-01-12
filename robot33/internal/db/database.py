@@ -13,20 +13,25 @@ document_collection = database.get_collection(DOCUMENT_COLLECTION_NAME)
 class DBDAO(ABC):
     @abstractmethod
     def insert_one(self, data: BaseModel) -> str:
-        pass
+        """
+        Insert a new data to the database."""
 
     @abstractmethod
     def delete_one(self, id: str) -> int:
-        pass
+        """
+        Delete a data from the database."""
 
     @abstractmethod
     def update_one(self, id: str, data: BaseModel) -> int:
-        pass
+        """
+        Update a data in the database"""
 
     @abstractmethod
     def find_one(self, id: str) -> BaseModel:
-        pass
+        """
+        Find a data in the database."""
 
     @abstractmethod
-    def find_all(self) -> list:
-        pass
+    def find_all(self) -> list[BaseModel]:
+        """
+        Find all data in the database."""
