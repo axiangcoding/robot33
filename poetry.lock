@@ -1455,6 +1455,20 @@ dev = ["pre-commit", "tox"]
 testing = ["pytest", "pytest-benchmark"]
 
 [[package]]
+name = "prompt-toolkit"
+version = "3.0.43"
+description = "Library for building powerful interactive command lines in Python"
+optional = false
+python-versions = ">=3.7.0"
+files = [
+    {file = "prompt_toolkit-3.0.43-py3-none-any.whl", hash = "sha256:a11a29cb3bf0a28a387fe5122cdb649816a957cd9261dcedf8c9f1fef33eacf6"},
+    {file = "prompt_toolkit-3.0.43.tar.gz", hash = "sha256:3527b7af26106cbc65a040bcc84839a3566ec1b051bb0bfe953631e704b0ff7d"},
+]
+
+[package.dependencies]
+wcwidth = "*"
+
+[[package]]
 name = "pyarrow"
 version = "14.0.2"
 description = "Python library for Apache Arrow"
@@ -1947,13 +1961,13 @@ six = ">=1.5"
 
 [[package]]
 name = "python-dotenv"
-version = "1.0.0"
+version = "0.21.1"
 description = "Read key-value pairs from a .env file and set them as environment variables"
 optional = false
-python-versions = ">=3.8"
+python-versions = ">=3.7"
 files = [
-    {file = "python-dotenv-1.0.0.tar.gz", hash = "sha256:a8df96034aae6d2d50a4ebe8216326c61c3eb64836776504fcca410e5937a3ba"},
-    {file = "python_dotenv-1.0.0-py3-none-any.whl", hash = "sha256:f5971a9226b701070a4bf2c38c89e5a3f0d64de8debda981d1db98583009122a"},
+    {file = "python-dotenv-0.21.1.tar.gz", hash = "sha256:1c93de8f636cde3ce377292818d0e440b6e45a82f215c3744979151fa8151c49"},
+    {file = "python_dotenv-0.21.1-py3-none-any.whl", hash = "sha256:41e12e0318bebc859fcc4d97d4db8d20ad21721a6aa5047dd59f090391cb549a"},
 ]
 
 [package.extras]
@@ -2056,13 +2070,13 @@ files = [
 
 [[package]]
 name = "qianfan"
-version = "0.2.6"
+version = "0.2.7"
 description = "文心千帆大模型平台 Python SDK"
 optional = false
 python-versions = ">=3.7,<4"
 files = [
-    {file = "qianfan-0.2.6-py3-none-any.whl", hash = "sha256:162a95bdc5a9cf5297a7632d07d5f77a0db551f9bd7e2c26349de0dc4bee6ff8"},
-    {file = "qianfan-0.2.6.tar.gz", hash = "sha256:d58781e21e15bb52464e90a80cdfe35c8642422c2092f985545b55dd8cfbd884"},
+    {file = "qianfan-0.2.7-py3-none-any.whl", hash = "sha256:a3d9df6bdf0067d6d472fab900327f4d665c78212c28e6d4ec21d9be41ab5c7a"},
+    {file = "qianfan-0.2.7.tar.gz", hash = "sha256:09b3a1929715fca1016d7c53d09c08ba32875bcb38c611dfd343ada2c6c6a1d3"},
 ]
 
 [package.dependencies]
@@ -2070,10 +2084,12 @@ aiohttp = ">=3.7.0"
 aiolimiter = ">=1.1.0"
 bce-python-sdk = ">=0.8.79"
 numpy = {version = ">=1.22.0", markers = "python_version >= \"3.8\""}
+prompt-toolkit = ">=3.0.38"
 pyarrow = {version = ">=14.0.1", markers = "python_version >= \"3.8\""}
-pydantic = ">=2"
-pydantic-settings = ">=2.0.3"
+pydantic = "*"
 python-dateutil = ">=2.8.2,<3.0.0"
+python-dotenv = "<=0.21.1"
+pyyaml = ">=6.0.1,<7.0.0"
 requests = ">=2.24"
 rich = ">=13.0.0"
 tenacity = ">=8.2.3,<9.0.0"
@@ -2378,6 +2394,17 @@ h11 = ">=0.8"
 standard = ["colorama (>=0.4)", "httptools (>=0.5.0)", "python-dotenv (>=0.13)", "pyyaml (>=5.1)", "uvloop (>=0.14.0,!=0.15.0,!=0.15.1)", "watchfiles (>=0.13)", "websockets (>=10.4)"]
 
 [[package]]
+name = "wcwidth"
+version = "0.2.13"
+description = "Measures the displayed width of unicode strings in a terminal"
+optional = false
+python-versions = "*"
+files = [
+    {file = "wcwidth-0.2.13-py2.py3-none-any.whl", hash = "sha256:3da69048e4540d84af32131829ff948f1e022c1c6bdb8d6102117aac784f6859"},
+    {file = "wcwidth-0.2.13.tar.gz", hash = "sha256:72ea0c06399eb286d978fdedb6923a9eb47e1c486ce63e9b4e64fc18303972b5"},
+]
+
+[[package]]
 name = "win32-setctime"
 version = "1.1.0"
 description = "A small Python utility to set file creation time on Windows"
@@ -2497,4 +2524,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "f812b6f15be5feb80ed14eaf307f480d025b7595b36889c293b6a560d19f7b6b"
+content-hash = "f22c51e1665a9c353025d17b572d237a79d151cab1cabcb6f74d5d051bafffc6"
