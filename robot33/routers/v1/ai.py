@@ -1,7 +1,7 @@
 from typing import Optional
 
 from fastapi import APIRouter, Depends
-from langchain.callbacks import get_openai_callback
+from langchain_community.callbacks import get_openai_callback
 from langchain_core.messages import FunctionMessage, AIMessage, SystemMessage, HumanMessage
 from langchain_core.messages.base import BaseMessage
 from pydantic import BaseModel, Field
@@ -46,7 +46,7 @@ def llm_chat(body: LLMChatIn) -> CommonResult[LLMChatOut]:
 
     msgs = convert_to_langchain_messages(body.messages)
     with get_openai_callback() as cb:
-        resp = chat_model.predict_messages(msgs, functions=body.functions)
+        resp = chat_model.invoke(msgs, functions=body.functions)
     logger.debug("token usage callback is {}", cb)
     return CommonResult.success(LLMChatOut(result=resp.content, additional_info=resp.additional_kwargs))
 
