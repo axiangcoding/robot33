@@ -8,7 +8,9 @@ from robot33.internal.schema.response import CommonResult
 from pydantic import BaseModel, Field
 
 
-router = APIRouter(tags=["documents"], prefix="/documents", dependencies=[Depends(verify_token)])
+router = APIRouter(
+    tags=["documents"], prefix="/documents", dependencies=[Depends(verify_token)]
+)
 
 
 class UploadDocumentIn(BaseModel):
@@ -52,7 +54,9 @@ class DocumentOut(BaseModel):
 
 
 @router.get("/item", summary="获取文档")
-def get_document(doc_id: str = Query(description="文档id")) -> CommonResult[DocumentOut]:
+def get_document(
+    doc_id: str = Query(description="文档id"),
+) -> CommonResult[DocumentOut]:
     """获取文档
 
     获取文档

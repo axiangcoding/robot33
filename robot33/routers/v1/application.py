@@ -19,4 +19,6 @@ async def get_info() -> CommonResult[InfoOut]:
 
     :return: 应用的信息
     """
-    return CommonResult[InfoOut].success(InfoOut(version=config.get_settings().app.version))
+    return CommonResult[InfoOut].success(
+        InfoOut(version=config.get_settings().app.version)
+    )

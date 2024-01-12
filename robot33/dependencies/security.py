@@ -15,7 +15,11 @@ class VerifyTokenHeader(APIKeyHeader):
         if secrets.compare_digest(api_key, config.get_settings().security.token):
             return None
         else:
-            raise HTTPException(status_code=HTTP_403_FORBIDDEN, detail="Authenticated Failed")
+            raise HTTPException(
+                status_code=HTTP_403_FORBIDDEN, detail="Authenticated Failed"
+            )
 
 
-verify_token = VerifyTokenHeader(name="X-Robot33-Token", scheme_name="Auth Token", description="token for api usage")
+verify_token = VerifyTokenHeader(
+    name="X-Robot33-Token", scheme_name="Auth Token", description="token for api usage"
+)

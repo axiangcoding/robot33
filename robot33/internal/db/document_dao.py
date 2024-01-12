@@ -22,7 +22,9 @@ class DocumentDAO(DBDAO):
 
     def update_one(self, id: str, data: DocumentInDb) -> int:
         data.updated_at = datetime.now(timezone.utc)
-        result = self.__col__.update_one({"_id": ObjectId(id)}, {"$set": data.model_dump(exclude_unset=True)})
+        result = self.__col__.update_one(
+            {"_id": ObjectId(id)}, {"$set": data.model_dump(exclude_unset=True)}
+        )
         return result.modified_count
 
     def find_one(self, id: str) -> DocumentInDb:

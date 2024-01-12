@@ -6,7 +6,11 @@ from typing import Any, Tuple, Dict, Optional
 
 from loguru import logger
 from pydantic.fields import FieldInfo
-from pydantic_settings import BaseSettings, PydanticBaseSettingsSource, SettingsConfigDict
+from pydantic_settings import (
+    BaseSettings,
+    PydanticBaseSettingsSource,
+    SettingsConfigDict,
+)
 
 
 class App(BaseSettings):
@@ -61,29 +65,45 @@ class Settings(BaseSettings):
 class TomlConfigSettingsSource(PydanticBaseSettingsSource):
     config_file_path: Optional[str] = "./app.toml"
 
-    def __init__(self, settings_cls: type[BaseSettings], config_file_path: Optional[str]):
+    def __init__(
+        self, settings_cls: type[BaseSettings], config_file_path: Optional[str]
+    ):
         super().__init__(settings_cls)
         if config_file_path is not None:
             self.config_file_path = config_file_path
 
-    def get_field_value(self, field: FieldInfo, field_name: str) -> Tuple[Any, str, bool]:
+    def get_field_value(
+        self, field: FieldInfo, field_name: str
+    ) -> Tuple[Any, str, bool]:
         file_content_toml = __get_dict_from_toml_file__(self.config_file_path)
         if not file_content_toml:
-            logger.debug("Not found config field {} in config file {}", field_name, self.config_file_path)
+            logger.debug(
+                "Not found config field {} in config file {}",
+                field_name,
+                self.config_file_path,
+            )
             return None, field_name, False
-        logger.debug("Found config field {} in config file {}", field_name, self.config_file_path)
+        logger.debug(
+            "Found config field {} in config file {}", field_name, self.config_file_path
+        )
         field_value = file_content_toml.get(field_name)
         return field_value, field_name, False
 
-    def prepare_field_value(self, field_name: str, field: FieldInfo, value: Any, value_is_complex: bool) -> Any:
+    def prepare_field_value(
+        self, field_name: str, field: FieldInfo, value: Any, value_is_complex: bool
+    ) -> Any:
         return value
 
     def __call__(self) -> Dict[str, Any]:
         d: Dict[str, Any] = {}
 
         for field_name, field in self.settings_cls.model_fields.items():
-            field_value, field_key, value_is_complex = self.get_field_value(field, field_name)
-            field_value = self.prepare_field_value(field_name, field, field_value, value_is_complex)
+            field_value, field_key, value_is_complex = self.get_field_value(
+                field, field_name
+            )
+            field_value = self.prepare_field_value(
+                field_name, field, field_value, value_is_complex
+            )
             if field_value is not None:
                 d[field_key] = field_value
 

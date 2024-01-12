@@ -10,7 +10,9 @@ from langchain_community.chat_models import QianfanChatEndpoint, ChatOpenAI
 
 
 def get_chat_model_client(
-    provider: LLMProviderType, model: Optional[str] = None, streaming: Optional[bool] = False
+    provider: LLMProviderType,
+    model: Optional[str] = None,
+    streaming: Optional[bool] = False,
 ) -> BaseChatModel:
     """
     获取LLM客户端
