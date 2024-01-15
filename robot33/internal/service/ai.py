@@ -1,12 +1,10 @@
 from typing import Optional
 
-from langchain_community.chat_models import FakeListChatModel
+from langchain_community.chat_models import ChatOpenAI, FakeListChatModel, QianfanChatEndpoint
+from langchain_core.language_models.chat_models import BaseChatModel
 
 from robot33 import config
 from robot33.internal.schema.common import LLMProviderType
-
-from langchain_core.language_models.chat_models import BaseChatModel
-from langchain_community.chat_models import QianfanChatEndpoint, ChatOpenAI
 
 
 def get_chat_model_client(

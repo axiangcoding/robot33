@@ -1,4 +1,4 @@
-from typing import Optional, TypeVar, Generic
+from typing import Generic, Optional, TypeVar
 
 from pydantic import BaseModel, Field
 
@@ -23,6 +23,4 @@ class CommonResult(BaseModel, Generic[T]):
         ce: Optional[CommonError] = CommonError.ERROR,
         message: Optional[str] = None,
     ):
-        return cls(
-            code=ce.code, message=message if message else ce.description, data=None
-        )
+        return cls(code=ce.code, message=message if message else ce.description, data=None)

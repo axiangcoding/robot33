@@ -11,11 +11,9 @@ dev:
 lint:
 	poetry run ruff check ./robot33 ./tests
 
-fix_lint:
-	poetry run ruff check ./robot33 ./tests --fix
-
 format:
 	poetry run ruff format ./robot33 ./tests
+	poetry run ruff --fix ./robot33 ./tests
 
 build_image:
 	docker build -t robot33 . --name robot33

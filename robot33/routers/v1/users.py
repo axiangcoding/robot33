@@ -1,4 +1,5 @@
 from fastapi import APIRouter
+
 from robot33.internal.db import database
 from robot33.internal.schema.response import CommonResult
 

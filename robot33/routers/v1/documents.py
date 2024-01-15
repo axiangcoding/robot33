@@ -1,16 +1,15 @@
-from datetime import datetime
 import hashlib
+from datetime import datetime
+
 from fastapi import APIRouter, Depends, Query
+from pydantic import BaseModel, Field
+
 from robot33.dependencies.security import verify_token
 from robot33.internal.db.document_dao import DocumentDAO
 from robot33.internal.model.document import DocumentInDb
 from robot33.internal.schema.response import CommonResult
-from pydantic import BaseModel, Field
 
-
-router = APIRouter(
-    tags=["documents"], prefix="/documents", dependencies=[Depends(verify_token)]
-)
+router = APIRouter(tags=["documents"], prefix="/documents", dependencies=[Depends(verify_token)])
 
 
 class UploadDocumentIn(BaseModel):
