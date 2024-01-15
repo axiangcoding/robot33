@@ -25,11 +25,10 @@ qianfan = "^0.2.7"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.4.4"
-black = "^23.12.1"
-flake8 = "^7.0.0"
 httpx = "^0.26.0"
 pytest-cov = "^4.1.0"
 pytest-html = "^4.1.1"
+ruff = "0.1.11"
 
 
 [[tool.poetry.source]]
@@ -41,5 +40,6 @@ priority = "supplemental"
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
-[tool.black]
+[tool.ruff]
 line-length = 120
+extend-select = ["I"]

@@ -1,8 +1,9 @@
 import pytest
+from loguru import logger
 from starlette.testclient import TestClient
+
 from robot33.internal.db import database
 from robot33.main import app
-from loguru import logger
 
 
 @pytest.fixture(scope="module")

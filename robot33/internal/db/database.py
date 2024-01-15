@@ -1,6 +1,8 @@
 from abc import ABC, abstractmethod
+
 from pydantic import BaseModel
 from pymongo import MongoClient
+
 from robot33 import config
 from robot33.internal.model.document import DOCUMENT_COLLECTION_NAME
 

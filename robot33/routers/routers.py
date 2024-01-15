@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 
 from robot33.routers import root
-from robot33.routers.v1 import application, users, ai, documents
+from robot33.routers.v1 import ai, application, documents, users
 
 router_root = root.router
 

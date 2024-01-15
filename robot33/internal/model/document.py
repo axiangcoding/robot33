@@ -1,6 +1,5 @@
 from robot33.internal.model.base import BaseDBSchema
 
-
 DOCUMENT_COLLECTION_NAME = "document"
 
 

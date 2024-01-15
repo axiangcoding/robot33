@@ -1,4 +1,5 @@
 from bson import ObjectId
+
 from robot33.internal.db.document_dao import DocumentDAO
 from robot33.internal.model.document import DocumentInDb
 

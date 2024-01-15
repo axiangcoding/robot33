@@ -1,8 +1,10 @@
 from datetime import datetime, timezone
+
 from bson import ObjectId
-from robot33.internal.model.document import DocumentInDb
-from robot33.internal.db.database import DBDAO, document_collection
 from pymongo.collection import Collection
+
+from robot33.internal.db.database import DBDAO, document_collection
+from robot33.internal.model.document import DocumentInDb
 
 
 class DocumentDAO(DBDAO):
