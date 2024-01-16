@@ -1,4 +1,4 @@
-.PHONY: setup fix_lock dev lint fix_lint format build_image test test_with_ci start_depend stop_depend clean help
+.PHONY: setup fix_lock dev lint format build_image test test_with_ci start_depend stop_depend clean help
 
 setup:
 	poetry check
@@ -38,9 +38,9 @@ clean:
 
 help:
 	@echo "setup: install dependencies"
+	@echo "fix_lock: fix lock file"
 	@echo "dev: run uvicorn server"
 	@echo "lint: lint check"
-	@echo "fix_lint: fix lint"
 	@echo "format: format code"
 	@echo "build_image: build docker image"
 	@echo "test: run test"
