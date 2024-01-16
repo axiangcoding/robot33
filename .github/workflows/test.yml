@@ -30,7 +30,7 @@ jobs:
           cache: "poetry"
       - name: Install dependencies
         run: |
-          poetry install
+          make setup
       - name: Prepare test app.toml file
         run: |
           cp ci/ci.app.toml app.toml
