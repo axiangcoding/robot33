@@ -1,9 +1,12 @@
-.PHONY: setup dev lint fix_lint format build_image test test_with_ci start_depend stop_depend clean help
+.PHONY: setup fix_lock dev lint fix_lint format build_image test test_with_ci start_depend stop_depend clean help
 
 setup:
 	poetry check
 	poetry check --lock
 	poetry install
+
+fix_lock:
+	poetry lock
 
 dev:
 	poetry run uvicorn robot33.main:app	--reload --port=8888

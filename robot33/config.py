@@ -70,7 +70,7 @@ class TomlConfigSettingsSource(PydanticBaseSettingsSource):
             self.config_file_path = config_file_path
 
     def get_field_value(self, field: FieldInfo, field_name: str) -> Tuple[Any, str, bool]:
-        file_content_toml = __get_dict_from_toml_file__(self.config_file_path)
+        file_content_toml = get_dict_from_toml_file(self.config_file_path)
         if not file_content_toml:
             logger.debug(
                 "Not found config field {} in config file {}",
@@ -98,7 +98,7 @@ class TomlConfigSettingsSource(PydanticBaseSettingsSource):
 
 
 @lru_cache
-def __get_dict_from_toml_file__(file_path: str) -> dict:
+def get_dict_from_toml_file(file_path: str) -> dict:
     if not path.exists(file_path):
         logger.debug("toml file {} not exist", file_path)
         return {}
