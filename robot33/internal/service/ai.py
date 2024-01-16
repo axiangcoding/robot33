@@ -1,15 +1,16 @@
 from typing import Optional
 
-from langchain_community.chat_models import FakeListChatModel
+from langchain_community.chat_models import ChatOpenAI, FakeListChatModel, QianfanChatEndpoint
+from langchain_core.language_models.chat_models import BaseChatModel
 
 from robot33 import config
 from robot33.internal.schema.common import LLMProviderType
-from langchain.chat_models import QianfanChatEndpoint, ChatOpenAI
-from langchain_core.language_models.chat_models import BaseChatModel
 
 
 def get_chat_model_client(
-    provider: LLMProviderType, model: Optional[str] = None, streaming: Optional[bool] = False
+    provider: LLMProviderType,
+    model: Optional[str] = None,
+    streaming: Optional[bool] = False,
 ) -> BaseChatModel:
     """
     获取LLM客户端

@@ -3,7 +3,6 @@ from fastapi.testclient import TestClient
 
 from robot33 import config
 
-
 __chat_path__ = "/v1/ai/chat"
 
 
@@ -28,7 +27,10 @@ def test_llm_chat_fake(test_client: TestClient, test_token_header: dict[str, str
     assert resp_json["data"]["result"] == "i am fake response"
 
 
-@pytest.mark.skipif(config.get_settings().llm_config.baidu_ernie is None, reason="需要配置百度文心一言的key和secret")
+@pytest.mark.skipif(
+    config.get_settings().llm_config.baidu_ernie is None,
+    reason="需要配置百度文心一言的key和secret",
+)
 def test_llm_chat_baidu_ernie(test_client: TestClient, test_token_header: dict[str, str]):
     response = test_client.post(
         __chat_path__,
@@ -72,7 +74,10 @@ def test_llm_chat_openai_gpt(test_client: TestClient, test_token_header: dict[st
     assert "result" in resp_json["data"]
 
 
-@pytest.mark.skipif(config.get_settings().llm_config.baidu_ernie is None, reason="需要配置百度文心一言的key和secret")
+@pytest.mark.skipif(
+    config.get_settings().llm_config.baidu_ernie is None,
+    reason="需要配置百度文心一言的key和secret",
+)
 def test_llm_chat_baidu_ernie_function_call(test_client: TestClient, test_token_header: dict[str, str]):
     response = test_client.post(
         __chat_path__,

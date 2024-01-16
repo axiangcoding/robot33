@@ -1,7 +1,8 @@
 import hashlib
+
+import pytest
 from bson import ObjectId
 from fastapi.testclient import TestClient
-import pytest
 
 from robot33.internal.model.document import DocumentInDb
 

@@ -18,13 +18,9 @@ jobs:
         with:
           python-version: "3.11"
           cache: "poetry"
-      - name: Check poetry file and lock file
+      - name: Check poetry file and install dependencies
         run: |
-          poetry check
-          poetry check --lock
-      - name: Install dependencies
-        run: |
-          poetry install
-      - name: Lint check with flake8
+          make setup
+      - name: Lint check with ruff
         run: |
           make lint

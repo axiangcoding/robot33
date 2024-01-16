@@ -1,23 +1,22 @@
-.PHONY: setup dev check_style format lint build_image test test_with_ci start_depend stop_depend clean help
-
-.DEFAULT_GOAL := help
+.PHONY: setup fix_lock dev lint fix_lint format build_image test test_with_ci start_depend stop_depend clean help
 
 setup:
 	poetry check
 	poetry check --lock
 	poetry install
 
+fix_lock:
+	poetry lock
+
 dev:
 	poetry run uvicorn robot33.main:app	--reload --port=8888
 
-check_style:
-	poetry run black ./robot33 ./tests --check 
+lint:
+	poetry run ruff check ./robot33 ./tests
 
 format:
-	poetry run black ./robot33 ./tests
-
-lint:
-	poetry run flake8 ./robot33 ./tests
+	poetry run ruff format ./robot33 ./tests
+	poetry run ruff --fix ./robot33 ./tests
 
 build_image:
 	docker build -t robot33 . --name robot33
@@ -40,9 +39,9 @@ clean:
 help:
 	@echo "setup: install dependencies"
 	@echo "dev: run uvicorn server"
-	@echo "check_style: check code style"
-	@echo "format: format code style"
-	@echo "lint: lint code"
+	@echo "lint: lint check"
+	@echo "fix_lint: fix lint"
+	@echo "format: format code"
 	@echo "build_image: build docker image"
 	@echo "test: run test"
 	@echo "test_with_ci: run test with ci"

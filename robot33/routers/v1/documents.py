@@ -1,7 +1,14 @@
-from datetime import datetime
 import hashlib
+<<<<<<< HEAD
+=======
+from datetime import datetime
+
+>>>>>>> main
 from fastapi import APIRouter, Depends, Query
+from pydantic import BaseModel, Field
+
 from robot33.dependencies.security import verify_token
+from robot33.internal.db.document_dao import DocumentDAO
 from robot33.internal.model.document import DocumentInDb
 from robot33.internal.schema.response import CommonResult
 from pydantic import BaseModel, Field
@@ -37,7 +44,7 @@ def upload_document(body: UploadDocumentIn) -> CommonResult[UploadDocumentOut]:
         tag=body.tag,
         owner="",
     )
-    id = document_dao.insert_one(data)
+    id = DocumentDAO().insert_one(data)
     return CommonResult.success(UploadDocumentOut(document_id=id))
 
 
@@ -51,13 +58,15 @@ class DocumentOut(BaseModel):
 
 
 @router.get("/item", summary="获取文档")
-def get_document(doc_id: str = Query(description="文档id")) -> CommonResult[DocumentOut]:
+def get_document(
+    doc_id: str = Query(description="文档id"),
+) -> CommonResult[DocumentOut]:
     """获取文档
 
     获取文档
 
     :return:
     """
-    data = document_dao.find_one(doc_id)
+    data = DocumentDAO().find_one(doc_id)
     out = DocumentOut.model_validate(data.model_dump())
     return CommonResult.success(out)
