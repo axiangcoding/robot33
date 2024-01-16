@@ -1,9 +1,6 @@
 import hashlib
-<<<<<<< HEAD
-=======
 from datetime import datetime
 
->>>>>>> main
 from fastapi import APIRouter, Depends, Query
 from pydantic import BaseModel, Field
 
