@@ -992,13 +992,13 @@ text-helpers = ["chardet (>=5.1.0,<6.0.0)"]
 
 [[package]]
 name = "langchain-community"
-version = "0.0.12"
+version = "0.0.13"
 description = "Community contributed LangChain integrations."
 optional = false
 python-versions = ">=3.8.1,<4.0"
 files = [
-    {file = "langchain_community-0.0.12-py3-none-any.whl", hash = "sha256:13b988afaa24e570d2b9992aecccb2fe36d9c33feafd9804f3066dc2ff042d4d"},
-    {file = "langchain_community-0.0.12.tar.gz", hash = "sha256:7cfe36c52b1fb86c1095d4dec0cf466a1c752a7446104e8b39cf0f70512a4851"},
+    {file = "langchain_community-0.0.13-py3-none-any.whl", hash = "sha256:655196e446e7f37f4882221b6f3f791d6add28ea596d521ccf6f4507386b9a13"},
+    {file = "langchain_community-0.0.13.tar.gz", hash = "sha256:cf66c6ff7fcbeb582f5e88ee00decea7fdeca5ccddda725046f28efc697c41a7"},
 ]
 
 [package.dependencies]
@@ -2698,4 +2698,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "9d98b345967848b88876e131dd3a6cc7789de709cbb28f94c9b71f70f365cae3"
+content-hash = "34e14c664d7176a86357a7725d80775b4279e2e71522a4d67e2a85acf4bd5136"
