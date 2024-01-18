@@ -1,9 +1,7 @@
-.venv
 .idea
 __pycache__
 logs/
 report
-.pytest_cache
 
 .coverage
 volumes/
