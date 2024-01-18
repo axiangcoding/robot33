@@ -1,4 +1,4 @@
-.PHONY: setup fix_lock dev lint format build_image test test_with_ci start_depend stop_depend clean help
+.PHONY: setup fix_lock dev lint format build_image test test_with_ci clean help
 
 setup:
 	poetry check
@@ -27,12 +27,6 @@ test:
 test_with_ci:
 	poetry run pytest --cov=./robot33 ./tests/ --cov-report=xml
 
-start_depend:
-	cd depends && docker compose up -d --remove-orphans
-
-stop_depend:
-	cd depends && docker compose stop
-
 clean:
 	rm ./logs ./report ./htmlcov
 
@@ -45,7 +39,5 @@ help:
 	@echo "build_image: build docker image"
 	@echo "test: run test"
 	@echo "test_with_ci: run test with ci"
-	@echo "start_depend: start depend service"
-	@echo "stop_depend: stop depend service"
 	@echo "clean: clean logs, report and htmlcov"
 	
