@@ -3,7 +3,7 @@
 setup:
 	poetry check
 	poetry check --lock
-	poetry install
+	poetry install --sync
 
 fix_lock:
 	poetry lock
