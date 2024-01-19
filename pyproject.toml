@@ -19,7 +19,7 @@ pymongo = "^4.6.1"
 loguru = "^0.7.2"
 langchain = "^0.1.1"
 langchain-community = "^0.0.13"
-openai = "^1.8.0"
+langchain-openai = "^0.0.2.post1"
 qianfan = "^0.2.7"
 
 
@@ -32,7 +32,7 @@ ruff = "0.1.13"
 
 
 [[tool.poetry.source]]
-name = "mirrors"
+name = "tsinghua-mirror"
 url = "https://pypi.tuna.tsinghua.edu.cn/simple/"
 priority = "supplemental"
 
