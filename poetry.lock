@@ -2000,13 +2000,13 @@ files = [
 
 [[package]]
 name = "qianfan"
-version = "0.2.7"
+version = "0.2.8"
 description = "文心千帆大模型平台 Python SDK"
 optional = false
 python-versions = ">=3.7,<4"
 files = [
-    {file = "qianfan-0.2.7-py3-none-any.whl", hash = "sha256:a3d9df6bdf0067d6d472fab900327f4d665c78212c28e6d4ec21d9be41ab5c7a"},
-    {file = "qianfan-0.2.7.tar.gz", hash = "sha256:09b3a1929715fca1016d7c53d09c08ba32875bcb38c611dfd343ada2c6c6a1d3"},
+    {file = "qianfan-0.2.8-py3-none-any.whl", hash = "sha256:89c2ae1a5382c1a0f8da07d975c156f00e9100dae3094dae9520fbf5349378cc"},
+    {file = "qianfan-0.2.8.tar.gz", hash = "sha256:091a5abd0c752a3859bf683a10e2ae3e06aff05d09fe3565803f8be27f972d8b"},
 ]
 
 [package.dependencies]
@@ -2699,4 +2699,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "85fb8e8de516c28a46ed03000ce2b10aebd6ac482f044df8927fe55890128d7d"
+content-hash = "216c14f2b663faf54e658a41d58476ab3d6f3b7d54bc10a947257fffcf358d0c"
