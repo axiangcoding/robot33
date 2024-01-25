@@ -2000,13 +2000,13 @@ files = [
 
 [[package]]
 name = "qianfan"
-version = "0.2.7"
+version = "0.2.9"
 description = "文心千帆大模型平台 Python SDK"
 optional = false
 python-versions = ">=3.7,<4"
 files = [
-    {file = "qianfan-0.2.7-py3-none-any.whl", hash = "sha256:a3d9df6bdf0067d6d472fab900327f4d665c78212c28e6d4ec21d9be41ab5c7a"},
-    {file = "qianfan-0.2.7.tar.gz", hash = "sha256:09b3a1929715fca1016d7c53d09c08ba32875bcb38c611dfd343ada2c6c6a1d3"},
+    {file = "qianfan-0.2.9-py3-none-any.whl", hash = "sha256:be0f16bc4eaccfd206ebec9b2fbf98109cf8599e9517048c3355d5b95e2eaf2e"},
+    {file = "qianfan-0.2.9.tar.gz", hash = "sha256:fbc4d68fb6b317d35a62954cea6a67d43c39feccfc7a4b84c924734343c5e407"},
 ]
 
 [package.dependencies]
@@ -2026,7 +2026,8 @@ tenacity = ">=8.2.3,<9.0.0"
 typer = ">=0.9.0"
 
 [package.extras]
-all = ["langchain (>=0.0.321)"]
+all = ["emoji", "langchain (>=0.0.321)", "ltp", "sentencepiece", "torch", "torch (<=1.13.1)"]
+data-clean = ["emoji", "ltp", "sentencepiece", "torch", "torch (<=1.13.1)"]
 langchain = ["langchain (>=0.0.321)"]
 
 [[package]]
@@ -2699,4 +2700,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "85fb8e8de516c28a46ed03000ce2b10aebd6ac482f044df8927fe55890128d7d"
+content-hash = "22206341f7ecad1edbc68e3eb74ccd432e2b0f79076971a0e348fe6ea270cf3f"
